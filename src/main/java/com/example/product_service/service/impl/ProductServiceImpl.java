@@ -2,12 +2,10 @@ package com.example.product_service.service.impl;
 
 import com.example.product_service.dto.ProductDto;
 import com.example.product_service.entity.Product;
-import com.example.product_service.entity.ProductCategory;
 import com.example.product_service.entity.ProductMerchant;
 import com.example.product_service.repository.ProductMerchantRepository;
 import com.example.product_service.repository.ProductRepository;
 import com.example.product_service.service.ProductService;
-import jdk.jfr.Category;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
         BeanUtils.copyProperties(productDto, product);
         String productId = UUID.randomUUID().toString();
         product.setProductId(productId);
-        product.setProductCategories(new ArrayList<>(productDto.getProductCategories()));
+        product.setProductCategoryId(productDto.getProductCategoryId());
         Product product1 = productRepository.save(product);
 
         ProductMerchant productMerchant = new ProductMerchant();
@@ -45,7 +43,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(String productId){return productRepository.findById(productId);}
+    public Optional<Product> getProductById(String productId){
+        Optional<Product> product = productRepository.findById(productId);
+        return product;
+    }
 
     public Boolean updateProductById(String productId, ProductDto productDto) {
         Product updatedProduct = new Product();

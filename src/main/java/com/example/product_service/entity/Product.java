@@ -17,7 +17,7 @@ public class Product {
     private String productDescription;
     private String merchantId;
     private String imageUrl;
-    private List<ProductCategory> productCategories;
+    private String productCategoryId;
     private int price;
     private int count;
 }

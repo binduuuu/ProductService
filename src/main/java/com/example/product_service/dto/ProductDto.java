@@ -10,7 +10,7 @@ public class ProductDto {
     private String productName;
     private String productDescription;
     private String imageUrl;
-    private List<ProductCategory> productCategories;
+    private String productCategoryId;
     private int price;
     private int count;
     private String merchantId;
